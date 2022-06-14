@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { faker } from "@faker-js/faker";
 import { MockContext, Context, createMockContext } from "../../config/context";
-import { UserQuery } from "../../resolvers/query/user/user";
+import { UserQuery } from "../../resolvers/query/user";
 
 const userClass = new UserQuery();
 const spyUserClass = jest.spyOn(userClass, 'userNameEmail');

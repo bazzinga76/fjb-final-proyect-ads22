@@ -18,13 +18,23 @@ const userData: Prisma.UserCreateInput[] = [
     }
 ]
 
+/* const postData: Prisma.PostCreateInput[] = [
+    {
+
+    }
+] */
+
 async function main(){
     console.log('seeding...');
-    for(const u of userData){
+/*     for(const u of userData){
         const user = await prisma.user.create({
             data: u
         });
-    }
+    } */
+    await prisma.user.createMany({ data: userData });
+    // await prisma.post.createMany({ data: postData });
+    // await prisma.comment.createMany({ data: commentData });
+    // await prisma.reaction.createMany({ data: reactionData });
 };
 
 main()

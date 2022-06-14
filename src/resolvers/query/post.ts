@@ -6,8 +6,8 @@ import {
     InputType,
     Field,
 } from 'type-graphql'
-import { Post } from '../../../db/entities'
-import { Context } from '../../../config/context'
+import { Post } from '../../db/entities'
+import { Context } from '../../config/context'
 
 @Resolver(Post)
 export class PostQuery {

@@ -6,8 +6,8 @@ import {
     InputType,
     Field,
 } from 'type-graphql'
-import { User } from '../../../db/entities'
-import { Context } from '../../../config/context'
+import { User } from '../../db/entities'
+import { Context } from '../../config/context'
 
 @Resolver(User)
 export class UserQuery {

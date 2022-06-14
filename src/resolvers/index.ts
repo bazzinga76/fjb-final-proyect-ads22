@@ -1,4 +1,4 @@
-import { UserMutation } from './mutation/user/user'
+import { UserMutation } from './mutation/user'
 
 export const resolvers = [
     UserMutation

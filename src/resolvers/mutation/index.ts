@@ -1,2 +1,2 @@
-export * as UserMutation from './user/user'
-
+export * as UserMutation from "./user";
+export * as StudentMutation from "./student";
