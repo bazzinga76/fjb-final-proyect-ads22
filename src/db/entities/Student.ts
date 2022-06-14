@@ -6,7 +6,7 @@ import { Report_card } from "./Report_card";
 @ObjectType()
 export class Student {
   @Field((type) => ID)
-  id?: string;
+  id: string;
 
   @Field((type) => String, { nullable: true })
   name?: string | null;
@@ -17,10 +17,10 @@ export class Student {
   @Field((type) => String, { nullable: true })
   maternal_surname?: string | null;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   birth_date?: Date;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   admission_date?: Date;
 
   @Field()
