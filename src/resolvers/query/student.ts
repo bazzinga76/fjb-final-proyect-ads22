@@ -4,14 +4,14 @@ import { Student } from "../../db/entities";
 import { Context } from "../../config/context";
 
 @Resolver(Student)
-export class UserQuery {
+export class StudentQuery {
   @Query(() => [Student])
-  async allUsers(@Ctx() ctx: Context) {
+  async allStudents(@Ctx() ctx: Context) {
     return ctx.prisma.students.findMany();
   }
 
   @Query(() => Student)
-  async userById(@Ctx() ctx: Context, params: { studentId: string }) {
+  async studentById(@Ctx() ctx: Context, params: { studentId: string }) {
     return ctx.prisma.students.findUnique({
       where: { id: params.studentId },
     });
