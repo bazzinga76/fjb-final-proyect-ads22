@@ -20,12 +20,7 @@ export class StudentMutation {
     @Ctx() ctx: Context
   ): Promise<Student> {
     return ctx.prisma.students.create({
-      data: {
-        email: data.email,
-        name: data.name,
-        paternal_surname: data.paternal_surname,
-        maternal_surname: data.maternal_surname,
-      },
+      data,
     });
   }
 }

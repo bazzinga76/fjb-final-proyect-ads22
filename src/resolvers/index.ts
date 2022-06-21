@@ -1,5 +1,6 @@
-import { UserMutation } from './mutation/user'
+import { UserMutation } from "./mutation";
+import { UserQuery } from "./query";
 
-export const resolvers = [
-    UserMutation
-]
+export const query = [UserQuery];
+
+export const mutation = [UserMutation];

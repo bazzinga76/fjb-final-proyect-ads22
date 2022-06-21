@@ -17,20 +17,20 @@ export class Teacher {
   @Field((type) => String, { nullable: true })
   maternal_surname?: string | null;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   birth_date?: Date;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   admission_date?: Date;
 
   @Field()
   @IsEmail()
   email: string;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   createdAt?: Date;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   updatedAt?: Date;
 
   @Field((type) => Report_card)
