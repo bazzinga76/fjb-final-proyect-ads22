@@ -17,7 +17,7 @@ import { UserCreateInput } from "./inputs";
 export class UserMutation {
   @Mutation((returns) => User)
   async signupUser(
-    @Arg("data") data: UserCreateInput,
+    @Arg("data") data: Prisma.UserCreateInput,
     @Ctx() ctx: Context
   ): Promise<User> {
     return ctx.prisma.user.create({
@@ -30,7 +30,7 @@ export class UserMutation {
 
   @Mutation((returns) => User)
   async changePassword(
-    @Arg("data") data: UserCreateInput,
+    @Arg("data") data: Prisma.UserCreateInput,
     @Ctx() ctx: Context
   ): Promise<void> {
     /* return ctx.prisma.user.update({
