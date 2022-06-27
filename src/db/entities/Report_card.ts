@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { ObjectType, Field, ID } from "type-graphql";
+import { ObjectType, Field, ID, Int } from "type-graphql";
 import { IsEmail } from "class-validator";
 import { Student } from "./Student";
 import { Subject } from "./Subject";
@@ -51,6 +51,9 @@ export class Report_card {
 
   @Field((type) => Date)
   evaluation_end_date?: Date;
+
+  @Field((type) => Number, { defaultValue: 0 })
+  try?: number;
 
   @Field((type) => Date)
   createdAt?: Date;

@@ -105,6 +105,7 @@ model Report_cards {
   passed                Boolean
   evaluation_start_date DateTime
   evaluation_end_date   DateTime
+  try                   Int
   createdAt             DateTime @default(now())
   updatedAt             DateTime @default(now())
 }
