@@ -55,57 +55,73 @@ model Comment {
 }
 
 model Students {
-  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
   name             String
   paternal_surname String
   maternal_surname String
   birth_date       DateTime
   admission_date   DateTime
-  email            String         @unique
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @default(now())
-  Report_cards     Report_cards[]
+  email            String             @unique
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
+  ReportCardDetail ReportCardDetail[]
 }
 
 model Teachers {
-  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
   name             String
   paternal_surname String
   maternal_surname String
   birth_date       DateTime
   admission_date   DateTime
-  email            String         @unique
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @default(now())
-  Report_cards     Report_cards[]
+  email            String             @unique
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
+  ReportCardDetail ReportCardDetail[]
 }
 
 model Subjects {
-  id           String         @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  description  String
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @default(now())
-  Report_cards Report_cards[]
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  description      String
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
+  ReportCardDetail ReportCardDetail[]
 }
 
-model Report_cards {
-  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-  student               Students @relation(fields: [studentId], references: [id])
-  studentId             String   @db.ObjectId
-  subject               Subjects @relation(fields: [subjectId], references: [id])
-  subjectId             String   @db.ObjectId
-  teacher               Teachers @relation(fields: [teacherId], references: [id])
-  teacherId             String   @db.ObjectId
-  class                 String
-  school_year           String
-  score                 Float
-  period                String
-  description           String
-  passed                Boolean
-  evaluation_start_date DateTime
-  evaluation_end_date   DateTime
-  try                   Int
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @default(now())
+// model ReportCard {
+//   id                String             @id @default(auto()) @map("_id") @db.ObjectId
+//   student           Students           @relation(fields: [studentId], references: [id])
+//   studentId         String             @db.ObjectId
+//   class             String
+//   schoolYear        String
+//   score             Float
+//   period            String
+//   description       String
+//   createdAt         DateTime           @default(now())
+//   updatedAt         DateTime           @default(now())
+//   ReportCardDetails ReportCardDetail[]
+// }
+
+model ReportCardDetail {
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
+  // reportCard          ReportCard @relation(fields: [reportCardId], references: [id])
+  // reportCardId        String     @db.ObjectId
+  student             Students? @relation(fields: [studentId], references: [id])
+  studentId           String?   @db.ObjectId
+  subject             Subjects  @relation(fields: [subjectId], references: [id])
+  subjectId           String    @db.ObjectId
+  teacher             Teachers  @relation(fields: [teacherId], references: [id])
+  teacherId           String    @db.ObjectId
+  class               String
+  schoolYear          String
+  score               Float
+  period              String
+  description         String
+  passed              Boolean
+  evaluationStartDate DateTime
+  evaluationEndDate   DateTime
+  try                 Int
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @default(now())
 }

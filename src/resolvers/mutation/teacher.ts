@@ -13,14 +13,33 @@ import { Teacher } from "../../db/entities";
 import { Context } from "../../config/context";
 
 @Resolver(Teacher)
-export class TeacherMutation {
+export class StudentMutation {
   @Mutation((returns) => Teacher)
-  async signupUser(
-    @Arg("data") data: Prisma.TeachersCreateInput,
+  async createTeacher(
+    @Arg("data") data: Prisma.TeachersCreateWithoutReportCardDetailInput,
     @Ctx() ctx: Context
   ): Promise<Teacher> {
     return ctx.prisma.teachers.create({
       data,
+    });
+  }
+
+  @Mutation(() => [Teacher])
+  async updateTeacher(
+    @Arg("data") data: Prisma.TeachersUpdateArgs,
+    @Ctx() ctx: Context,
+    params: { teacherId: string }
+  ) {
+    return ctx.prisma.teachers.update({
+      where: { id: params.teacherId },
+      data,
+    });
+  }
+
+  @Mutation(() => [Teacher])
+  async deleteTeacher(@Ctx() ctx: Context, params: { teacherId: string }) {
+    return ctx.prisma.teachers.delete({
+      where: { id: params.teacherId },
     });
   }
 }

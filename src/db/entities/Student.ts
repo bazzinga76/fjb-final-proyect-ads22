@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { ObjectType, Field, ID } from "type-graphql";
 import { IsEmail } from "class-validator";
-import { Report_card } from "./Report_card";
+import { ReportCardDetail } from "./ReportCardDetail";
 
 @ObjectType()
 export class Student {
@@ -33,6 +33,6 @@ export class Student {
   @Field((type) => Date)
   updatedAt?: Date;
 
-  @Field((type) => Report_card)
-  report_card?: Report_card[];
+  @Field((type) => ReportCardDetail)
+  reportCardDetail?: ReportCardDetail[];
 }

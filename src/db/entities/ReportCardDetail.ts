@@ -6,7 +6,7 @@ import { Subject } from "./Subject";
 import { Teacher } from "./Teacher";
 
 @ObjectType()
-export class Report_card {
+export class ReportCardDetail {
   @Field((type) => ID)
   id?: string;
 

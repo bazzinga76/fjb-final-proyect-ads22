@@ -29,4 +29,9 @@ export class UserQuery {
 
     return `${teacher.name}-${teacher.email}`;
   }
+
+  @Query(() => [Teacher])
+  async countTeachers(@Ctx() ctx: Context) {
+    return ctx.prisma.teachers.count();
+  }
 }

@@ -29,4 +29,16 @@ export class StudentQuery {
 
     return `${student.name}-${student.email}`;
   }
+
+  @Query(() => Student)
+  async studentByEmail(@Ctx() ctx: Context, params: { studentEmail: string }) {
+    return ctx.prisma.students.findUnique({
+      where: { email: params.studentEmail },
+    });
+  }
+
+  @Query(() => [Student])
+  async countStudents(@Ctx() ctx: Context) {
+    return ctx.prisma.students.count();
+  }
 }
