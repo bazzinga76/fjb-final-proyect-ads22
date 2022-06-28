@@ -4,7 +4,7 @@ import { User } from "../db/entities";
 import { Student } from "../db/entities";
 import { Teacher } from "../db/entities";
 import { Subject } from "../db/entities";
-import { Report_card } from "../db/entities";
+import { ReportCardDetail } from "../db/entities";
 
 import prisma from "../client";
 

@@ -8,16 +8,19 @@ import {
   Mutation,
   Arg,
   Int,
+  FieldResolver,
 } from "type-graphql";
 import { Prisma } from "@prisma/client";
-import { Student } from "../../db/entities";
+import { ReportCardDetail, Student } from "../../db/entities";
 import { Context } from "../../config/context";
+import { StudentCreateInput } from "./inputs";
+import { PublicKeyInput } from "crypto";
 
 @Resolver(Student)
 export class StudentMutation {
   @Mutation((returns) => Student)
   async createStudent(
-    @Arg("data") data: Prisma.StudentsCreateWithoutReportCardDetailInput,
+    @Arg("data") data: StudentCreateInput,
     @Ctx() ctx: Context
   ): Promise<Student> {
     return ctx.prisma.students.create({
@@ -27,7 +30,7 @@ export class StudentMutation {
 
   @Mutation(() => [Student])
   async updateStudent(
-    @Arg("data") data: Prisma.StudentsUpdateArgs,
+    @Arg("data") data: StudentCreateInput,
     @Ctx() ctx: Context,
     params: { studentId: string }
   ) {

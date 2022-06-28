@@ -33,6 +33,6 @@ export class Teacher {
   @Field((type) => Date, { nullable: true })
   updatedAt?: Date;
 
-  @Field((type) => ReportCardDetail)
-  reportCardDetail?: ReportCardDetail[];
+  @Field((type) => ReportCardDetail, { nullable: true })
+  reportCardDetail?: ReportCardDetail[] | null;
 }

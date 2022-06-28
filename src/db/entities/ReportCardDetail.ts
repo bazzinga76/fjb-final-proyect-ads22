@@ -47,10 +47,10 @@ export class ReportCardDetail {
   passed?: boolean | false;
 
   @Field((type) => Date)
-  evaluation_start_date?: Date;
+  evaluationStartDate?: Date;
 
   @Field((type) => Date)
-  evaluation_end_date?: Date;
+  evaluationEndDate?: Date;
 
   @Field((type) => Number, { defaultValue: 0 })
   try?: number;

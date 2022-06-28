@@ -4,7 +4,7 @@ import { Teacher } from "../../db/entities";
 import { Context } from "../../config/context";
 
 @Resolver(Teacher)
-export class UserQuery {
+export class TeacherQuery {
   @Query(() => [Teacher])
   async allTeachers(@Ctx() ctx: Context) {
     return ctx.prisma.teachers.findMany();

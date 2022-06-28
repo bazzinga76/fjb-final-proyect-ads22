@@ -11,12 +11,16 @@ import {
 import { Prisma } from "@prisma/client";
 import { ReportCardDetail } from "../../db/entities";
 import { Context } from "../../config/context";
+import {
+  ReportCardDetailCreateInput,
+  ReportCardDetailUpdateInput,
+} from "./inputs";
 
 @Resolver(ReportCardDetail)
 export class ReportCardDetailMutation {
   @Mutation((returns) => ReportCardDetail)
   async createReportCardDetail(
-    @Arg("data") data: Prisma.ReportCardDetailCreateInput,
+    @Arg("data") data: ReportCardDetailCreateInput,
     @Ctx() ctx: Context
   ): Promise<ReportCardDetail> {
     return ctx.prisma.reportCardDetail.create({
@@ -26,12 +30,12 @@ export class ReportCardDetailMutation {
 
   @Mutation(() => [ReportCardDetail])
   async updateReportCardDetail(
-    @Arg("data") data: Prisma.ReportCardDetailUpdateArgs,
+    @Arg("data") data: ReportCardDetailUpdateInput,
     @Ctx() ctx: Context,
-    params: { reportcarddetailId: string }
+    params: { reportCardDetailId: string }
   ) {
     return ctx.prisma.reportCardDetail.update({
-      where: { id: params.reportcarddetailId },
+      where: { id: params.reportCardDetailId },
       data,
     });
   }
@@ -39,10 +43,10 @@ export class ReportCardDetailMutation {
   @Mutation(() => [ReportCardDetail])
   async deleteReportCardDetail(
     @Ctx() ctx: Context,
-    params: { reportcarddetailId: string }
+    params: { reportCardDetailId: string }
   ) {
-    return ctx.prisma.reportcarddetails.delete({
-      where: { id: params.reportcarddetailId },
+    return ctx.prisma.reportCardDetail.delete({
+      where: { id: params.reportCardDetailId },
     });
   }
 }

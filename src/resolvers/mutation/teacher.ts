@@ -11,12 +11,13 @@ import {
 import { Prisma } from "@prisma/client";
 import { Teacher } from "../../db/entities";
 import { Context } from "../../config/context";
+import { TeacherCreateInput } from "./inputs";
 
 @Resolver(Teacher)
-export class StudentMutation {
+export class TeacherMutation {
   @Mutation((returns) => Teacher)
   async createTeacher(
-    @Arg("data") data: Prisma.TeachersCreateWithoutReportCardDetailInput,
+    @Arg("data") data: TeacherCreateInput,
     @Ctx() ctx: Context
   ): Promise<Teacher> {
     return ctx.prisma.teachers.create({
@@ -26,7 +27,7 @@ export class StudentMutation {
 
   @Mutation(() => [Teacher])
   async updateTeacher(
-    @Arg("data") data: Prisma.TeachersUpdateArgs,
+    @Arg("data") data: TeacherCreateInput,
     @Ctx() ctx: Context,
     params: { teacherId: string }
   ) {

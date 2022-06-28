@@ -12,12 +12,13 @@ import {
 import { Prisma } from "@prisma/client";
 import { Subject } from "../../db/entities";
 import { Context } from "../../config/context";
+import { SubjectCreateInput } from "./inputs";
 
 @Resolver(Subject)
 export class SubjectMutation {
   @Mutation((returns) => Subject)
   async createSubject(
-    @Arg("data") data: Prisma.SubjectsCreateWithoutReportCardDetailInput,
+    @Arg("data") data: SubjectCreateInput,
     @Ctx() ctx: Context
   ): Promise<Subject> {
     return ctx.prisma.subjects.create({
@@ -27,7 +28,7 @@ export class SubjectMutation {
 
   @Mutation(() => [Subject])
   async updateSubject(
-    @Arg("data") data: Prisma.SubjectsUpdateArgs,
+    @Arg("data") data: SubjectCreateInput,
     @Ctx() ctx: Context,
     params: { subjectId: string }
   ) {

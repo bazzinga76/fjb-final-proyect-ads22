@@ -20,6 +20,6 @@ export class Subject {
   @Field((type) => Date)
   updatedAt?: Date;
 
-  @Field((type) => ReportCardDetail)
-  reportCardDetail?: ReportCardDetail[];
+  @Field((type) => ReportCardDetail, { nullable: true })
+  reportCardDetail?: ReportCardDetail[] | null;
 }
