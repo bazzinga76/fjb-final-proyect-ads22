@@ -77,15 +77,9 @@ export class SubjectCreateInput {
 }
 
 @InputType()
-export class ReportCardDetailCreateInput {
+export class ReportCardCreateInput {
   @Field((type) => String)
   studentId: string;
-
-  @Field((type) => String)
-  teacherId: string;
-
-  @Field((type) => String)
-  subjectId: string;
 
   @Field((type) => String)
   class: string;
@@ -102,14 +96,59 @@ export class ReportCardDetailCreateInput {
   @Field((type) => String)
   description: string;
 
-  @Field((type) => Boolean)
-  passed: boolean;
+  @Field((type) => Date)
+  evaluationStartDate: Date;
+
+  @Field((type) => Date)
+  evaluationEndDate: Date;
+}
+
+@InputType()
+export class ReportCardUpdateInput {
+  @Field((type) => String)
+  studentId: string;
+
+  @Field((type) => String)
+  class: string;
+
+  @Field((type) => String)
+  schoolYear: string;
+
+  @Field((type) => Number)
+  score: number;
+
+  @Field((type) => String)
+  period: string;
+
+  @Field((type) => String)
+  description: string;
 
   @Field((type) => Date)
   evaluationStartDate: Date;
 
   @Field((type) => Date)
   evaluationEndDate: Date;
+}
+
+@InputType()
+export class ReportCardDetailCreateInput {
+  @Field((type) => String)
+  reportCardId: string;
+
+  @Field((type) => String)
+  teacherId: string;
+
+  @Field((type) => String)
+  subjectId: string;
+
+  @Field((type) => Number)
+  score: number;
+
+  @Field((type) => String)
+  description: string;
+
+  @Field((type) => Boolean)
+  passed: boolean;
 
   @Field((type) => Number)
   try: number;
@@ -118,7 +157,7 @@ export class ReportCardDetailCreateInput {
 @InputType()
 export class ReportCardDetailUpdateInput {
   @Field((type) => String)
-  studentId: string;
+  reportCardId: string;
 
   @Field((type) => String)
   teacherId: string;
@@ -126,29 +165,14 @@ export class ReportCardDetailUpdateInput {
   @Field((type) => String)
   subjectId: string;
 
-  @Field((type) => String)
-  class: string;
-
-  @Field((type) => String)
-  schoolYear: string;
-
   @Field((type) => Number)
   score: number;
-
-  @Field((type) => String)
-  period: string;
 
   @Field((type) => String)
   description: string;
 
   @Field((type) => Boolean)
   passed: boolean;
-
-  @Field((type) => Date)
-  evaluationStartDate: Date;
-
-  @Field((type) => Date)
-  evaluationEndDate: Date;
 
   @Field((type) => Number)
   try: number;
