@@ -37,9 +37,9 @@ export class ReportCardDetail {
   @Field((type) => Number, { defaultValue: 0 })
   try?: number;
 
-  @Field((type) => Date)
-  createdAt?: Date;
+  @Field((type) => Date, { nullable: true })
+  createdAt?: Date | null;
 
-  @Field((type) => Date)
-  updatedAt?: Date;
+  @Field((type) => Date, { nullable: true })
+  updatedAt?: Date | null;
 }

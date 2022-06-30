@@ -4,8 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongodb"]
+  provider = "prisma-client-js"
 }
 
 model Post {
@@ -25,9 +24,9 @@ model Post {
 model User {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   email     String     @unique
-  name      String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @default(now())
+  name      String
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @default(now())
   posts     Post[]
   reactions Reaction[]
   comments  Comment[]
@@ -63,8 +62,8 @@ model Student {
   birth_date       DateTime
   admission_date   DateTime
   email            String             @unique
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @default(now())
+  createdAt        DateTime?          @default(now())
+  updatedAt        DateTime?          @default(now())
   ReportCardDetail ReportCardDetail[]
 }
 
@@ -76,8 +75,8 @@ model Teacher {
   birth_date       DateTime
   admission_date   DateTime
   email            String             @unique
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @default(now())
+  createdAt        DateTime?          @default(now())
+  updatedAt        DateTime?          @default(now())
   ReportCardDetail ReportCardDetail[]
 }
 
@@ -85,28 +84,28 @@ model Subject {
   id               String             @id @default(auto()) @map("_id") @db.ObjectId
   name             String
   description      String
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @default(now())
+  createdAt        DateTime?          @default(now())
+  updatedAt        DateTime?          @default(now())
   ReportCardDetail ReportCardDetail[]
 }
 
 model ReportCardDetail {
-  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
-  student             Student  @relation(fields: [studentId], references: [id])
-  studentId           String   @db.ObjectId
-  teacher             Teacher  @relation(fields: [teacherId], references: [id])
-  teacherId           String   @db.ObjectId
-  subject             Subject  @relation(fields: [subjectId], references: [id])
-  subjectId           String   @db.ObjectId
-  class               String   @default("")
-  schoolYear          String   @default("")
-  score               Float    @default(0)
-  period              String   @default("")
-  description         String   @default("")
-  passed              Boolean  @default(false)
-  evaluationStartDate DateTime @default(now())
-  evaluationEndDate   DateTime @default(now())
-  try                 Int      @default(0)
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @default(now())
+  id                  String    @id @default(auto()) @map("_id") @db.ObjectId
+  student             Student   @relation(fields: [studentId], references: [id])
+  studentId           String    @db.ObjectId
+  teacher             Teacher   @relation(fields: [teacherId], references: [id])
+  teacherId           String    @db.ObjectId
+  subject             Subject   @relation(fields: [subjectId], references: [id])
+  subjectId           String    @db.ObjectId
+  class               String    @default("")
+  schoolYear          String    @default("")
+  score               Float     @default(0)
+  period              String    @default("")
+  description         String    @default("")
+  passed              Boolean   @default(false)
+  evaluationStartDate DateTime  @default(now())
+  evaluationEndDate   DateTime  @default(now())
+  try                 Int       @default(0)
+  createdAt           DateTime? @default(now())
+  updatedAt           DateTime? @default(now())
 }

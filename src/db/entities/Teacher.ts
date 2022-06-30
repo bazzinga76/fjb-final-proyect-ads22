@@ -28,10 +28,10 @@ export class Teacher {
   email: string;
 
   @Field((type) => Date, { nullable: true })
-  createdAt?: Date;
+  createdAt?: Date | null;
 
   @Field((type) => Date, { nullable: true })
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 
   @Field((type) => ReportCardDetail, { nullable: true })
   reportCardDetail?: ReportCardDetail[] | null;

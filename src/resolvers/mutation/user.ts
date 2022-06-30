@@ -24,7 +24,7 @@ export class UserMutation {
 
   @Mutation((returns) => User)
   async signupUser(
-    @Arg("data") data: User,
+    @Arg("data") data: UserCreateInput,
     @Ctx() ctx: Context
   ): Promise<User> {
     return ctx.prisma.user.create({
@@ -37,10 +37,10 @@ export class UserMutation {
 
   @Mutation((returns) => User)
   async changePassword(
-    @Arg("data") data: User,
+    @Arg("data") data: UserCreateInput,
     @Ctx() ctx: Context
-  ): Promise<User> {
-    return ctx.prisma.user.update({
+  ): Promise<void> {
+    /*  return ctx.prisma.user.update({
       where: {
         id: data.id,
       },
@@ -48,6 +48,6 @@ export class UserMutation {
         email: data.email,
         name: data.name,
       },
-    });
+    }); */
   }
 }

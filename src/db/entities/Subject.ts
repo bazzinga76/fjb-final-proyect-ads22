@@ -14,11 +14,11 @@ export class Subject {
   @Field((type) => String, { nullable: true })
   description?: string | null;
 
-  @Field((type) => Date)
-  createdAt?: Date;
+  @Field((type) => Date, { nullable: true })
+  createdAt?: Date | null;
 
-  @Field((type) => Date)
-  updatedAt?: Date;
+  @Field((type) => Date, { nullable: true })
+  updatedAt?: Date | null;
 
   @Field((type) => ReportCardDetail, { nullable: true })
   reportCardDetail?: ReportCardDetail[] | null;

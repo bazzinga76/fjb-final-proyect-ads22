@@ -9,14 +9,6 @@ import {
   Mutation,
   Arg,
 } from "type-graphql";
-import {
-  Post,
-  User,
-  Student,
-  Teacher,
-  Subject,
-  ReportCardDetail,
-} from "../../db/entities";
 
 @InputType()
 export class UserCreateInput {
