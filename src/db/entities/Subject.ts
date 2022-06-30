@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import { ObjectType, Field, ID } from "type-graphql";
-import { IsEmail } from "class-validator";
 import { ReportCardDetail } from "./ReportCardDetail";
 
 @ObjectType()

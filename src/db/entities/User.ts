@@ -18,7 +18,7 @@ export class User {
   name?: string | null;
 
   @Field((type) => Post, { nullable: true })
-  post?: Post[] | null;
+  posts?: Post[] | null;
 
   @Field((type) => Comment)
   comments?: Comment[];
@@ -27,8 +27,8 @@ export class User {
   reactions?: Reaction[];
 
   @Field((type) => Date, { nullable: true })
-  createdAt: Date | null;
+  createdAt?: Date | null;
 
   @Field((type) => Date, { nullable: true })
-  updatedAt: Date | null;
+  updatedAt?: Date | null;
 }

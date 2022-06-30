@@ -5,7 +5,7 @@ import { User } from "./User";
 @ObjectType()
 export class Post {
   @Field((type) => ID)
-  id?: string;
+  id: string;
 
   @Field((type) => String)
   title: string;
@@ -19,12 +19,12 @@ export class Post {
   @Field((type) => Number, { defaultValue: 0 })
   viewCount?: number;
 
-  @Field((type) => Date)
-  createdAt?: Date;
+  @Field((type) => Date, { nullable: true })
+  createdAt?: Date | null;
 
-  @Field((type) => Date)
-  updatedAt?: Date;
+  @Field((type) => Date, { nullable: true })
+  updatedAt?: Date | null;
 
-  @Field((type) => String, { nullable: true })
-  authorId: string;
+  @Field((type) => User, { nullable: true })
+  author?: User | null;
 }

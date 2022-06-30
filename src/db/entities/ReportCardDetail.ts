@@ -1,6 +1,5 @@
 import "reflect-metadata";
 import { ObjectType, Field, ID, Int } from "type-graphql";
-import { IsEmail } from "class-validator";
 import { Subject } from "./Subject";
 import { Teacher } from "./Teacher";
 import { ReportCard } from "./ReportCard";
