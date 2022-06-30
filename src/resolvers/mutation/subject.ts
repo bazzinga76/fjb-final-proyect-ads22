@@ -21,7 +21,7 @@ export class SubjectMutation {
     @Arg("data") data: SubjectCreateInput,
     @Ctx() ctx: Context
   ): Promise<Subject> {
-    return ctx.prisma.subjects.create({
+    return ctx.prisma.subject.create({
       data,
     });
   }
@@ -32,7 +32,7 @@ export class SubjectMutation {
     @Ctx() ctx: Context,
     params: { subjectId: string }
   ) {
-    return ctx.prisma.subjects.update({
+    return ctx.prisma.subject.update({
       where: { id: params.subjectId },
       data,
     });
@@ -40,7 +40,7 @@ export class SubjectMutation {
 
   @Mutation(() => [Subject])
   async deleteSubject(@Ctx() ctx: Context, params: { subjectId: string }) {
-    return ctx.prisma.subjects.delete({
+    return ctx.prisma.subject.delete({
       where: { id: params.subjectId },
     });
   }

@@ -10,24 +10,6 @@ export class ReportCardDetail {
   @Field((type) => ID)
   id?: string;
 
-  @Field((type) => Student)
-  student: Student;
-
-  @Field((type) => ID)
-  studentId: string;
-
-  @Field((type) => Subject)
-  subject: Subject;
-
-  @Field((type) => ID)
-  subjectId: string;
-
-  @Field((type) => Teacher)
-  teacher: Teacher;
-
-  @Field((type) => ID)
-  teacherId: string;
-
   @Field((type) => String, { nullable: true })
   class?: string | null;
 
@@ -35,7 +17,7 @@ export class ReportCardDetail {
   school_year?: string | null;
 
   @Field((type) => String, { nullable: true })
-  score?: string | null;
+  score?: number | null;
 
   @Field((type) => String, { nullable: true })
   period?: string | null;

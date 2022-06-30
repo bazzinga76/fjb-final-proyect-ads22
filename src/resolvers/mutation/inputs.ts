@@ -86,23 +86,14 @@ export class SubjectCreateInput {
 
 @InputType()
 export class ReportCardDetailCreateInput {
-  @Field((type) => Student)
-  student: Student;
-
-  @Field((type) => ID)
+  @Field((type) => String)
   studentId: string;
 
-  @Field((type) => Subject)
-  subject: Subject;
-
-  @Field((type) => ID)
-  subjectId: string;
-
-  @Field((type) => Teacher)
-  teacher: Teacher;
-
-  @Field((type) => ID)
+  @Field((type) => String)
   teacherId: string;
+
+  @Field((type) => String)
+  subjectId: string;
 
   @Field((type) => String)
   class: string;

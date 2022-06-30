@@ -20,7 +20,7 @@ export class TeacherMutation {
     @Arg("data") data: TeacherCreateInput,
     @Ctx() ctx: Context
   ): Promise<Teacher> {
-    return ctx.prisma.teachers.create({
+    return ctx.prisma.teacher.create({
       data,
     });
   }
@@ -31,7 +31,7 @@ export class TeacherMutation {
     @Ctx() ctx: Context,
     params: { teacherId: string }
   ) {
-    return ctx.prisma.teachers.update({
+    return ctx.prisma.teacher.update({
       where: { id: params.teacherId },
       data,
     });
@@ -39,7 +39,7 @@ export class TeacherMutation {
 
   @Mutation(() => [Teacher])
   async deleteTeacher(@Ctx() ctx: Context, params: { teacherId: string }) {
-    return ctx.prisma.teachers.delete({
+    return ctx.prisma.teacher.delete({
       where: { id: params.teacherId },
     });
   }

@@ -7,19 +7,19 @@ import { Context } from "../../config/context";
 export class StudentQuery {
   @Query(() => [Student])
   async allStudents(@Ctx() ctx: Context) {
-    return ctx.prisma.students.findMany();
+    return ctx.prisma.student.findMany();
   }
 
   @Query(() => Student)
   async studentById(@Ctx() ctx: Context, params: { studentId: string }) {
-    return ctx.prisma.students.findUnique({
+    return ctx.prisma.student.findUnique({
       where: { id: params.studentId },
     });
   }
 
   @Query(() => String)
   async studentNameEmail(@Ctx() ctx: Context, params: { studentId: string }) {
-    const student = await ctx.prisma.students.findUnique({
+    const student = await ctx.prisma.student.findUnique({
       where: { id: params.studentId },
     });
 
@@ -32,13 +32,13 @@ export class StudentQuery {
 
   @Query(() => Student)
   async studentByEmail(@Ctx() ctx: Context, params: { studentEmail: string }) {
-    return ctx.prisma.students.findUnique({
+    return ctx.prisma.student.findUnique({
       where: { email: params.studentEmail },
     });
   }
 
   @Query(() => [Student])
   async countStudents(@Ctx() ctx: Context) {
-    return ctx.prisma.students.count();
+    return ctx.prisma.student.count();
   }
 }

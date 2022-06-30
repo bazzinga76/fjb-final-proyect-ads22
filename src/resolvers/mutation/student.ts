@@ -23,7 +23,7 @@ export class StudentMutation {
     @Arg("data") data: StudentCreateInput,
     @Ctx() ctx: Context
   ): Promise<Student> {
-    return ctx.prisma.students.create({
+    return ctx.prisma.student.create({
       data,
     });
   }
@@ -34,7 +34,7 @@ export class StudentMutation {
     @Ctx() ctx: Context,
     params: { studentId: string }
   ) {
-    return ctx.prisma.students.update({
+    return ctx.prisma.student.update({
       where: { id: params.studentId },
       data,
     });
@@ -42,7 +42,7 @@ export class StudentMutation {
 
   @Mutation(() => [Student])
   async deleteStudent(@Ctx() ctx: Context, params: { studentId: string }) {
-    return ctx.prisma.students.delete({
+    return ctx.prisma.student.delete({
       where: { id: params.studentId },
     });
   }

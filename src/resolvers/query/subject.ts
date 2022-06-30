@@ -7,19 +7,19 @@ import { Context } from "../../config/context";
 export class SubjectQuery {
   @Query(() => [Subject])
   async allSubjects(@Ctx() ctx: Context) {
-    return ctx.prisma.subjects.findMany();
+    return ctx.prisma.subject.findMany();
   }
 
   @Query(() => Subject)
   async subjectById(@Ctx() ctx: Context, params: { subjectId: string }) {
-    return ctx.prisma.subjects.findUnique({
+    return ctx.prisma.subject.findUnique({
       where: { id: params.subjectId },
     });
   }
 
   @Query(() => String)
   async subjectDescription(@Ctx() ctx: Context, params: { subjectId: string }) {
-    const subject = await ctx.prisma.subjects.findUnique({
+    const subject = await ctx.prisma.subject.findUnique({
       where: { id: params.subjectId },
     });
 
@@ -32,6 +32,6 @@ export class SubjectQuery {
 
   @Query(() => [Subject])
   async countSubjects(@Ctx() ctx: Context) {
-    return ctx.prisma.subjects.count();
+    return ctx.prisma.subject.count();
   }
 }
