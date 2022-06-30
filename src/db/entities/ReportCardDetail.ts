@@ -1,20 +1,14 @@
 import "reflect-metadata";
 import { ObjectType, Field, ID, Int } from "type-graphql";
 import { IsEmail } from "class-validator";
-import { Student } from "./Student";
 import { Subject } from "./Subject";
 import { Teacher } from "./Teacher";
+import { ReportCard } from "./ReportCard";
 
 @ObjectType()
 export class ReportCardDetail {
   @Field((type) => ID)
   id?: string;
-
-  @Field((type) => String, { nullable: true })
-  class?: string | null;
-
-  @Field((type) => String, { nullable: true })
-  school_year?: string | null;
 
   @Field((type) => String, { nullable: true })
   score?: number | null;
@@ -28,12 +22,6 @@ export class ReportCardDetail {
   @Field((type) => Boolean, { nullable: true })
   passed?: boolean | false;
 
-  @Field((type) => Date)
-  evaluationStartDate?: Date;
-
-  @Field((type) => Date)
-  evaluationEndDate?: Date;
-
   @Field((type) => Number, { defaultValue: 0 })
   try?: number;
 
@@ -42,4 +30,13 @@ export class ReportCardDetail {
 
   @Field((type) => Date, { nullable: true })
   updatedAt?: Date | null;
+
+  @Field((type) => ReportCard, { nullable: true })
+  reportCard?: ReportCard | null;
+
+  @Field((type) => Teacher, { nullable: true })
+  teacher?: Teacher | null;
+
+  @Field((type) => Subject, { nullable: true })
+  subject?: Subject | null;
 }

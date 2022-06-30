@@ -23,6 +23,7 @@ export class StudentMutation {
     @Arg("data") data: StudentCreateInput,
     @Ctx() ctx: Context
   ): Promise<Student> {
+    console.log(data);
     return ctx.prisma.student.create({
       data,
     });
