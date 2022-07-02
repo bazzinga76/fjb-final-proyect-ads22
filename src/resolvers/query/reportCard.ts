@@ -6,7 +6,7 @@ import { Context } from "../../config/context";
 @Resolver(ReportCard)
 export class ReportCardQuery {
   @Query(() => [ReportCard])
-  async allReportCardDetails(@Ctx() ctx: Context) {
+  async allReportCards(@Ctx() ctx: Context) {
     return ctx.prisma.reportCard.findMany();
   }
 

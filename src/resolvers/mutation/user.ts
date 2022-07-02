@@ -17,7 +17,7 @@ import { UserCreateInput } from "./inputs";
 
 @Resolver(User)
 export class UserMutation {
-  @FieldResolver()
+  @FieldResolver((returns) => Post)
   async post(@Root() user: User, @Ctx() ctx: Context): Promise<Post[]> {
     return ctx.prisma.user.findUnique({ where: { id: user.id } }).posts();
   }

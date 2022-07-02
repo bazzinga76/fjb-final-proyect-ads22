@@ -177,3 +177,15 @@ export class ReportCardDetailUpdateInput {
   @Field((type) => Number)
   try: number;
 }
+
+@InputType()
+export class FindById {
+  @Field((type) => ID)
+  id: string;
+}
+
+@InputType()
+export class FindByEmail {
+  @Field((type) => String)
+  email: string;
+}

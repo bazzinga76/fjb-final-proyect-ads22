@@ -64,7 +64,7 @@ model Student {
   email            String       @unique
   createdAt        DateTime?    @default(now())
   updatedAt        DateTime?    @default(now())
-  ReportCard       ReportCard[]
+  reportCard       ReportCard[]
 }
 
 model Teacher {
