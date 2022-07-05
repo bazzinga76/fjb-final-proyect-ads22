@@ -13,7 +13,7 @@ import {
 import { Prisma } from "@prisma/client";
 import { ReportCardDetail, Student } from "../../db/entities";
 import { Context } from "../../config/context";
-import { StudentCreateInput } from "./inputs";
+import { StudentCreateInput, StudentUpdateInput } from "./inputs";
 import { PublicKeyInput } from "crypto";
 
 @Resolver(Student)
@@ -31,12 +31,13 @@ export class StudentMutation {
 
   @Mutation(() => [Student])
   async updateStudent(
-    @Arg("data") data: StudentCreateInput,
+    @Arg("studentId") studentId: string,
+    @Arg("data") data: StudentUpdateInput,
     @Ctx() ctx: Context,
     params: { studentId: string }
   ) {
     return ctx.prisma.student.update({
-      where: { id: params.studentId },
+      where: { id: studentId },
       data,
     });
   }

@@ -9,6 +9,7 @@ import {
   Mutation,
   Arg,
 } from "type-graphql";
+import { ReportCard } from "../../db/entities";
 
 @InputType()
 export class UserCreateInput {
@@ -47,6 +48,27 @@ export class StudentCreateInput {
 }
 
 @InputType()
+export class StudentUpdateInput {
+  @Field((type) => String, { nullable: true })
+  name?: string;
+
+  @Field((type) => String, { nullable: true })
+  paternal_surname?: string;
+
+  @Field((type) => String, { nullable: true })
+  maternal_surname?: string;
+
+  @Field((type) => Date, { nullable: true })
+  birth_date?: Date;
+
+  @Field((type) => Date, { nullable: true })
+  admission_date?: Date;
+
+  @Field((type) => String, { nullable: true })
+  email?: string;
+}
+
+@InputType()
 export class TeacherCreateInput {
   @Field((type) => String)
   name: string;
@@ -68,12 +90,42 @@ export class TeacherCreateInput {
 }
 
 @InputType()
+export class TeacherUpdateInput {
+  @Field((type) => String, { nullable: true })
+  name?: string;
+
+  @Field((type) => String, { nullable: true })
+  paternal_surname?: string;
+
+  @Field((type) => String, { nullable: true })
+  maternal_surname?: string;
+
+  @Field((type) => Date, { nullable: true })
+  birth_date?: Date;
+
+  @Field((type) => Date, { nullable: true })
+  admission_date?: Date;
+
+  @Field((type) => String, { nullable: true })
+  email?: string;
+}
+
+@InputType()
 export class SubjectCreateInput {
   @Field((type) => String)
   name: string;
 
   @Field((type) => String)
   description: string;
+}
+
+@InputType()
+export class SubjectUpdateInput {
+  @Field((type) => String, { nullable: true })
+  name?: string;
+
+  @Field((type) => String, { nullable: true })
+  description?: string;
 }
 
 @InputType()
@@ -108,25 +160,25 @@ export class ReportCardUpdateInput {
   @Field((type) => String)
   studentId: string;
 
-  @Field((type) => String)
-  class: string;
+  @Field((type) => String, { nullable: true })
+  class?: string;
 
-  @Field((type) => String)
+  @Field((type) => String, { nullable: true })
   schoolYear: string;
 
-  @Field((type) => Number)
+  @Field((type) => Number, { nullable: true })
   score: number;
 
-  @Field((type) => String)
+  @Field((type) => String, { nullable: true })
   period: string;
 
-  @Field((type) => String)
+  @Field((type) => String, { nullable: true })
   description: string;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   evaluationStartDate: Date;
 
-  @Field((type) => Date)
+  @Field((type) => Date, { nullable: true })
   evaluationEndDate: Date;
 }
 

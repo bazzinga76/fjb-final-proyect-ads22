@@ -30,12 +30,13 @@ export class ReportCardDetailMutation {
 
   @Mutation(() => [ReportCardDetail])
   async updateReportCardDetail(
+    @Arg("reportCardDetailId") reportCardDetailId: string,
     @Arg("data") data: ReportCardDetailUpdateInput,
     @Ctx() ctx: Context,
     params: { reportCardDetailId: string }
   ) {
     return ctx.prisma.reportCardDetail.update({
-      where: { id: params.reportCardDetailId },
+      where: { id: reportCardDetailId },
       data,
     });
   }

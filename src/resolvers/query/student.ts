@@ -15,7 +15,7 @@ import { FindByEmail, FindById } from "../mutation/inputs";
 
 @Resolver((of) => Student)
 export class StudentQuery {
-  @FieldResolver()
+  /*  @FieldResolver()
   async reportCard(
     @Root() student: Student,
     @Ctx() ctx: Context
@@ -23,7 +23,7 @@ export class StudentQuery {
     return await ctx.prisma.student
       .findUnique({ where: { id: student.id } })
       .reportCard();
-  }
+  } */
 
   @Query(() => [Student])
   async allStudents(@Ctx() ctx: Context) {
@@ -31,9 +31,9 @@ export class StudentQuery {
   }
 
   @Query(() => Student)
-  async studentById(@Ctx() ctx: Context, params: { studentId: string }) {
+  async studentById(@Ctx() ctx: Context, @Arg("studentId") studentId: string) {
     return ctx.prisma.student.findUnique({
-      where: { id: params.studentId },
+      where: { id: studentId },
       include: { reportCard: true },
     });
   }

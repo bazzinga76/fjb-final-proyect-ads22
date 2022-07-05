@@ -11,7 +11,7 @@ import {
 import { Prisma } from "@prisma/client";
 import { Teacher } from "../../db/entities";
 import { Context } from "../../config/context";
-import { TeacherCreateInput } from "./inputs";
+import { TeacherCreateInput, TeacherUpdateInput } from "./inputs";
 
 @Resolver(Teacher)
 export class TeacherMutation {
@@ -25,14 +25,15 @@ export class TeacherMutation {
     });
   }
 
-  @Mutation(() => [Teacher])
+  @Mutation(() => Teacher)
   async updateTeacher(
-    @Arg("data") data: TeacherCreateInput,
+    @Arg("teacherId") teacherId: string,
+    @Arg("data") data: TeacherUpdateInput,
     @Ctx() ctx: Context,
     params: { teacherId: string }
   ) {
     return ctx.prisma.teacher.update({
-      where: { id: params.teacherId },
+      where: { id: teacherId },
       data,
     });
   }

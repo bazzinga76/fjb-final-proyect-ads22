@@ -12,7 +12,7 @@ import {
 import { Prisma } from "@prisma/client";
 import { Subject } from "../../db/entities";
 import { Context } from "../../config/context";
-import { SubjectCreateInput } from "./inputs";
+import { SubjectCreateInput, SubjectUpdateInput } from "./inputs";
 
 @Resolver(Subject)
 export class SubjectMutation {
@@ -28,12 +28,13 @@ export class SubjectMutation {
 
   @Mutation(() => [Subject])
   async updateSubject(
-    @Arg("data") data: SubjectCreateInput,
+    @Arg("subjectId") subjectId: string,
+    @Arg("data") data: SubjectUpdateInput,
     @Ctx() ctx: Context,
     params: { subjectId: string }
   ) {
     return ctx.prisma.subject.update({
-      where: { id: params.subjectId },
+      where: { id: subjectId },
       data,
     });
   }
