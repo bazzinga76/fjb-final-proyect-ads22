@@ -24,7 +24,21 @@ export class ReportCardDetailMutation {
     @Ctx() ctx: Context
   ): Promise<ReportCardDetail> {
     return ctx.prisma.reportCardDetail.create({
-      data,
+      data: {
+        score: data.score,
+        description: data.description,
+        passed: data.passed,
+        try: data.try,
+        reportCard: {
+          connect: { id: data.reportCardId },
+        },
+        teacher: {
+          connect: { id: data.teacherId },
+        },
+        subject: {
+          connect: { id: data.subjectId },
+        },
+      },
     });
   }
 

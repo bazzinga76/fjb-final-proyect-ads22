@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Resolver, Query, Ctx, InputType, Field } from "type-graphql";
+import { Resolver, Query, Ctx, InputType, Field, Arg } from "type-graphql";
 import { Subject } from "../../db/entities";
 import { Context } from "../../config/context";
 
@@ -11,9 +11,10 @@ export class SubjectQuery {
   }
 
   @Query(() => Subject)
-  async subjectById(@Ctx() ctx: Context, params: { subjectId: string }) {
+  async subjectById(@Ctx() ctx: Context, @Arg("subjectId") subjectId: string) {
     return ctx.prisma.subject.findUnique({
-      where: { id: params.subjectId },
+      where: { id: subjectId },
+      include: { ReportCardDetail: true },
     });
   }
 

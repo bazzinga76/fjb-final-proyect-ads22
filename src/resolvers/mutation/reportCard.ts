@@ -17,7 +17,6 @@ import { ReportCardCreateInput, ReportCardUpdateInput } from "./inputs";
 export class ReportCardMutation {
   @Mutation((returns) => ReportCard)
   async createReportCard(
-    @Arg("studentId") studentId: string,
     @Arg("data") data: ReportCardCreateInput,
     @Ctx() ctx: Context
   ): Promise<ReportCard> {
@@ -32,7 +31,7 @@ export class ReportCardMutation {
         evaluationStartDate: data.evaluationStartDate,
         evaluationEndDate: data.evaluationEndDate,
         student: {
-          connect: { id: studentId },
+          connect: { id: data.studentId },
         },
       },
     });
