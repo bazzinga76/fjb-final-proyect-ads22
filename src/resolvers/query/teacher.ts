@@ -31,7 +31,7 @@ export class TeacherQuery {
     return `${teacher.name}-${teacher.email}`;
   }
 
-  @Query(() => [Teacher])
+  @Query(() => Number)
   async countTeachers(@Ctx() ctx: Context) {
     return ctx.prisma.teacher.count();
   }

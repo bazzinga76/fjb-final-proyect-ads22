@@ -31,7 +31,7 @@ export class SubjectQuery {
     return `${subject.name}-${subject.description}`;
   }
 
-  @Query(() => [Subject])
+  @Query(() => Number)
   async countSubjects(@Ctx() ctx: Context) {
     return ctx.prisma.subject.count();
   }

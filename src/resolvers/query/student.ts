@@ -61,7 +61,7 @@ export class StudentQuery {
     });
   }
 
-  @Query(() => [Student])
+  @Query(() => Number)
   async countStudents(@Ctx() ctx: Context) {
     return ctx.prisma.student.count();
   }

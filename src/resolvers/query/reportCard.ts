@@ -21,7 +21,7 @@ export class ReportCardQuery {
     });
   }
 
-  @Query(() => [ReportCard])
+  @Query(() => Number)
   async countReportCards(@Ctx() ctx: Context) {
     return ctx.prisma.reportCard.count();
   }
