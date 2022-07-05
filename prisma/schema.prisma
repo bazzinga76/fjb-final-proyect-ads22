@@ -55,16 +55,16 @@ model Comment {
 }
 
 model Student {
-  id               String       @id @default(auto()) @map("_id") @db.ObjectId
+  id               String      @id @default(auto()) @map("_id") @db.ObjectId
   name             String
   paternal_surname String
   maternal_surname String
   birth_date       DateTime
   admission_date   DateTime
-  email            String       @unique
-  createdAt        DateTime?    @default(now())
-  updatedAt        DateTime?    @default(now())
-  reportCard       ReportCard[]
+  email            String      @unique
+  createdAt        DateTime?   @default(now())
+  updatedAt        DateTime?   @default(now())
+  reportCard       ReportCard?
 }
 
 model Teacher {
@@ -91,8 +91,8 @@ model Subject {
 
 model ReportCard {
   id                  String             @id @default(auto()) @map("_id") @db.ObjectId
-  student             Student            @relation(fields: [studentId], references: [id])
-  studentId           String             @db.ObjectId
+  student             Student            @relation(fields: studentId, references: [id])
+  studentId           String             @unique @db.ObjectId
   class               String             @default("")
   schoolYear          String             @default("")
   score               Float              @default(0)

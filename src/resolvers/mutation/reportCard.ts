@@ -17,11 +17,24 @@ import { ReportCardCreateInput, ReportCardUpdateInput } from "./inputs";
 export class ReportCardMutation {
   @Mutation((returns) => ReportCard)
   async createReportCard(
+    @Arg("studentId") studentId: string,
     @Arg("data") data: ReportCardCreateInput,
     @Ctx() ctx: Context
   ): Promise<ReportCard> {
     return ctx.prisma.reportCard.create({
-      data,
+      //data,
+      data: {
+        class: data.class,
+        schoolYear: data.schoolYear,
+        score: data.score,
+        period: data.period,
+        description: data.description,
+        evaluationStartDate: data.evaluationStartDate,
+        evaluationEndDate: data.evaluationEndDate,
+        student: {
+          connect: { id: studentId },
+        },
+      },
     });
   }
 

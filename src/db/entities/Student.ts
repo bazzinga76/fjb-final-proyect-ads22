@@ -34,5 +34,5 @@ export class Student {
   updatedAt?: Date | null;
 
   @Field((type) => ReportCard, { nullable: true })
-  reportCard?: ReportCard[] | null;
+  reportCard?: ReportCard | null;
 }
