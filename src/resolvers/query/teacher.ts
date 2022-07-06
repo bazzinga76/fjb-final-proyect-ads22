@@ -7,7 +7,7 @@ import { Context } from "../../config/context";
 export class TeacherQuery {
   @Query(() => [Teacher])
   async allTeachers(@Ctx() ctx: Context) {
-    return ctx.prisma.teacher.findMany();
+    return ctx.prisma.teacher.findMany({ include: { ReportCardDetail: true } });
   }
 
   @Query(() => Teacher)

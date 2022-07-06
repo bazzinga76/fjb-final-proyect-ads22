@@ -29,7 +29,7 @@ export class StudentMutation {
     });
   }
 
-  @Mutation(() => [Student])
+  @Mutation(() => Student)
   async updateStudent(
     @Arg("studentId") studentId: string,
     @Arg("data") data: StudentUpdateInput,
@@ -39,6 +39,30 @@ export class StudentMutation {
     return ctx.prisma.student.update({
       where: { id: studentId },
       data,
+    });
+  }
+
+  @Mutation(() => Student)
+  async connectStudentReportCard(
+    @Arg("studentId") studentId: string,
+    @Arg("reportCardId") reportCardId: string,
+    @Arg("data") data: StudentUpdateInput,
+    @Ctx() ctx: Context,
+    params: { studentId: string }
+  ) {
+    return ctx.prisma.student.update({
+      where: { id: studentId },
+      data: {
+        name: data.name,
+        paternal_surname: data.paternal_surname,
+        maternal_surname: data.maternal_surname,
+        birth_date: data.birth_date,
+        admission_date: data.admission_date,
+        email: data.email,
+        reportCard: {
+          connect: { id: reportCardId },
+        },
+      },
     });
   }
 

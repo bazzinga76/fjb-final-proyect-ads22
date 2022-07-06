@@ -26,7 +26,7 @@ export class SubjectMutation {
     });
   }
 
-  @Mutation(() => [Subject])
+  @Mutation(() => Subject)
   async updateSubject(
     @Arg("subjectId") subjectId: string,
     @Arg("data") data: SubjectUpdateInput,

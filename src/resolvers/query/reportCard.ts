@@ -5,9 +5,21 @@ import { Context } from "../../config/context";
 
 @Resolver(ReportCard)
 export class ReportCardQuery {
+  /*  @FieldResolver()
+  async reportCardDetail(
+    @Root() reportCard: ReportCard,
+    @Ctx() ctx: Context
+  ): Promise<ReportCardDetail[]> {
+    return await ctx.prisma.reportCard
+      .findUnique({ where: { id: reportCard.id } })
+      .reportCardDetail();
+  } */
+
   @Query(() => [ReportCard])
   async allReportCards(@Ctx() ctx: Context) {
-    return ctx.prisma.reportCard.findMany();
+    return ctx.prisma.reportCard.findMany({
+      include: { ReportCardDetail: { select: { id: true } } },
+    });
   }
 
   @Query(() => ReportCard)
@@ -17,7 +29,7 @@ export class ReportCardQuery {
   ) {
     return ctx.prisma.reportCard.findUnique({
       where: { id: reportCardId },
-      include: { ReportCardDetail: true },
+      include: { ReportCardDetail: { select: { id: true } } },
     });
   }
 

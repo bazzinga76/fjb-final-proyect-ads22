@@ -11,7 +11,10 @@ export class ReportCardDetailQuery {
   }
 
   @Query(() => ReportCardDetail)
-  async reportCardById(@Ctx() ctx: Context, params: { reportCardId: string }) {
+  async reportCardDetailById(
+    @Ctx() ctx: Context,
+    params: { reportCardId: string }
+  ) {
     return ctx.prisma.reportCardDetail.findUnique({
       where: { id: params.reportCardId },
     });

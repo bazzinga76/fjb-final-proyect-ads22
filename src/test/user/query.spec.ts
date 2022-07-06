@@ -25,7 +25,7 @@ describe("User Query Class", () => {
       updatedAt: new Date(),
     };
     mockCtx.prisma.user.findUnique.mockResolvedValue(expectUser);
-    const response = userClass.userById(mockCtx, { id: expectUser.id });
+    const response = userClass.userById(mockCtx, expectUser.id);
     await expect(response).resolves.toEqual(expectUser);
   });
 
@@ -47,7 +47,7 @@ describe("User Query Class", () => {
   test("should find a user by id", async () => {
     const expectedErrorMsg = `user not found with id ${userId}`;
     mockCtx.prisma.user.findUnique.mockResolvedValue(null);
-    const response = userClass.userById(mockCtx, { id: "2" });
+    const response = userClass.userById(mockCtx, "2");
     expect(response).rejects.toThrow(expectedErrorMsg);
   });
 });

@@ -29,9 +29,7 @@ describe("Student Query Class", () => {
       updatedAt: new Date(),
     };
     mockCtx.prisma.student.findUnique.mockResolvedValue(expectStudent);
-    const response = studentClass.studentById(mockCtx, {
-      studentId: expectStudent.id,
-    });
+    const response = studentClass.studentById(mockCtx, expectStudent.id);
     await expect(response).resolves.toEqual(expectStudent);
   });
 
@@ -59,7 +57,7 @@ describe("Student Query Class", () => {
   test("should find a student by id", async () => {
     const expectedErrorMsg = `student not found with id ${studentId}`;
     mockCtx.prisma.student.findUnique.mockResolvedValue(null);
-    const response = studentClass.studentById(mockCtx, { studentId: "2" });
+    const response = studentClass.studentById(mockCtx, "2");
     expect(response).rejects.toThrow(expectedErrorMsg);
   });
 });

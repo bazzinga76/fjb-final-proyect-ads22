@@ -7,7 +7,7 @@ import { Context } from "../../config/context";
 export class SubjectQuery {
   @Query(() => [Subject])
   async allSubjects(@Ctx() ctx: Context) {
-    return ctx.prisma.subject.findMany();
+    return ctx.prisma.subject.findMany({ include: { ReportCardDetail: true } });
   }
 
   @Query(() => Subject)

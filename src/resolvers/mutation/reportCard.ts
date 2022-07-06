@@ -37,7 +37,7 @@ export class ReportCardMutation {
     });
   }
 
-  @Mutation(() => [ReportCard])
+  @Mutation(() => ReportCard)
   async updateReportCard(
     @Arg("reportCardId") reportCardId: string,
     @Arg("data") data: ReportCardUpdateInput,
@@ -47,6 +47,31 @@ export class ReportCardMutation {
     return ctx.prisma.reportCard.update({
       where: { id: reportCardId },
       data,
+    });
+  }
+
+  @Mutation(() => ReportCard)
+  async conectReportCardStudent(
+    @Arg("reportCardId") reportCardId: string,
+    @Arg("studentId") studentId: string,
+    @Arg("data") data: ReportCardUpdateInput,
+    @Ctx() ctx: Context,
+    params: { reportCardId: string }
+  ) {
+    return ctx.prisma.reportCard.update({
+      where: { id: reportCardId },
+      data: {
+        class: data.class,
+        schoolYear: data.schoolYear,
+        score: data.score,
+        period: data.period,
+        description: data.description,
+        evaluationStartDate: data.evaluationStartDate,
+        evaluationEndDate: data.evaluationEndDate,
+        student: {
+          connect: { id: data.studentId },
+        },
+      },
     });
   }
 

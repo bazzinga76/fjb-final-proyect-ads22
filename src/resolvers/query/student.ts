@@ -27,14 +27,24 @@ export class StudentQuery {
 
   @Query(() => [Student])
   async allStudents(@Ctx() ctx: Context) {
-    return ctx.prisma.student.findMany();
+    return ctx.prisma.student.findMany({
+      include: {
+        reportCard: {
+          include: { ReportCardDetail: { select: { id: true } } },
+        },
+      },
+    });
   }
 
   @Query(() => Student)
   async studentById(@Ctx() ctx: Context, @Arg("studentId") studentId: string) {
     return ctx.prisma.student.findUnique({
       where: { id: studentId },
-      include: { reportCard: true },
+      include: {
+        reportCard: {
+          include: { ReportCardDetail: { select: { id: true } } },
+        },
+      },
     });
   }
 
