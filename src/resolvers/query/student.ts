@@ -9,7 +9,7 @@ import {
   FieldResolver,
   Root,
 } from "type-graphql";
-import { ReportCard, Student } from "../../db/entities";
+import { ReportCard, ReportCardDetail, Student } from "../../db/entities";
 import { Context } from "../../config/context";
 import { FindByEmail, FindById } from "../mutation/inputs";
 
@@ -42,7 +42,7 @@ export class StudentQuery {
       where: { id: studentId },
       include: {
         reportCard: {
-          include: { ReportCardDetail: { select: { id: true } } },
+          include: { ReportCardDetail: true },
         },
       },
     });
@@ -74,5 +74,28 @@ export class StudentQuery {
   @Query(() => Number)
   async countStudents(@Ctx() ctx: Context) {
     return ctx.prisma.student.count();
+  }
+
+  @Query(() => ReportCard)
+  async reportCardByStudentId(
+    @Ctx() ctx: Context,
+    @Arg("studentId") studentId: string
+  ) {
+    return ctx.prisma.reportCard.findUnique({
+      where: { studentId: studentId },
+      include: { ReportCardDetail: true },
+    });
+  }
+
+  @Query(() => [ReportCardDetail])
+  async reportCardDetailByStudentId(
+    @Ctx() ctx: Context,
+    @Arg("studentId") studentId: string
+  ) {
+    return ctx.prisma.reportCard
+      .findUnique({
+        where: { studentId: studentId },
+      })
+      .ReportCardDetail();
   }
 }

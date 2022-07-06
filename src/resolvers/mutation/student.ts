@@ -29,6 +29,34 @@ export class StudentMutation {
     });
   }
 
+  @Mutation((returns) => Student)
+  async createStudentReportCard(
+    @Arg("data") data: StudentCreateInput,
+    @Ctx() ctx: Context
+  ): Promise<Student> {
+    console.log(data);
+    return ctx.prisma.student.create({
+      data: {
+        name: data.name,
+        paternal_surname: data.paternal_surname,
+        maternal_surname: data.maternal_surname,
+        birth_date: data.birth_date,
+        admission_date: data.admission_date,
+        email: data.email,
+        reportCard: {
+          connectOrCreate: {
+            where: {
+              studentId: data.studentId,
+            },
+            create: {
+              email: 'viola@prisma.io',
+              name: 'Viola',
+            },
+        },
+      include: { reportCard: true },
+    });
+  }
+
   @Mutation(() => Student)
   async updateStudent(
     @Arg("studentId") studentId: string,
