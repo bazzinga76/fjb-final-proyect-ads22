@@ -66,9 +66,6 @@ export class StudentUpdateInput {
 
   @Field((type) => String, { nullable: true })
   email?: string;
-
-  @Field((type) => ReportCard, { nullable: true })
-  reportCard?: ReportCard;
 }
 
 @InputType()
