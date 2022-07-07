@@ -13,9 +13,6 @@ export class ReportCardDetail {
   score?: number | null;
 
   @Field((type) => String, { nullable: true })
-  period?: string | null;
-
-  @Field((type) => String, { nullable: true })
   description?: string | null;
 
   @Field((type) => Boolean, { nullable: true })

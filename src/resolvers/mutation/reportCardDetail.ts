@@ -42,7 +42,7 @@ export class ReportCardDetailMutation {
     });
   }
 
-  @Mutation(() => [ReportCardDetail])
+  @Mutation(() => ReportCardDetail)
   async updateReportCardDetail(
     @Arg("reportCardDetailId") reportCardDetailId: string,
     @Arg("data") data: ReportCardDetailUpdateInput,
