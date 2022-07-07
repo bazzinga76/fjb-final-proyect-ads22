@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Resolver, Query, Ctx, InputType, Field } from "type-graphql";
+import { Resolver, Query, Ctx, InputType, Field, Arg } from "type-graphql";
 import { ReportCardDetail } from "../../db/entities";
 import { Context } from "../../config/context";
 
@@ -12,11 +12,11 @@ export class ReportCardDetailQuery {
 
   @Query(() => ReportCardDetail)
   async reportCardDetailById(
-    @Ctx() ctx: Context,
-    params: { reportCardId: string }
+    @Arg("reportCardDetailId") reportCardDetailId: string,
+    @Ctx() ctx: Context
   ) {
     return ctx.prisma.reportCardDetail.findUnique({
-      where: { id: params.reportCardId },
+      where: { id: reportCardDetailId },
     });
   }
 
