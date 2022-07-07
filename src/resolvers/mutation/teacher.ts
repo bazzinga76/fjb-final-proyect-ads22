@@ -38,10 +38,13 @@ export class TeacherMutation {
     });
   }
 
-  @Mutation(() => [Teacher])
-  async deleteTeacher(@Ctx() ctx: Context, params: { teacherId: string }) {
+  @Mutation(() => Teacher)
+  async deleteTeacher(
+    @Arg("teacherId") teacherId: string,
+    @Ctx() ctx: Context
+  ) {
     return ctx.prisma.teacher.delete({
-      where: { id: params.teacherId },
+      where: { id: teacherId },
     });
   }
 }

@@ -75,13 +75,14 @@ export class ReportCardMutation {
     });
   }
 
-  @Mutation(() => [ReportCard])
+  @Mutation(() => ReportCard)
   async deleteReportCard(
-    @Ctx() ctx: Context,
-    params: { reportCardId: string }
+    @Arg("reportCardId") reportCardId: string,
+    @Ctx()
+    ctx: Context
   ) {
     return ctx.prisma.reportCard.delete({
-      where: { id: params.reportCardId },
+      where: { id: reportCardId },
     });
   }
 }

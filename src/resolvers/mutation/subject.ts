@@ -39,10 +39,13 @@ export class SubjectMutation {
     });
   }
 
-  @Mutation(() => [Subject])
-  async deleteSubject(@Ctx() ctx: Context, params: { subjectId: string }) {
+  @Mutation(() => Subject)
+  async deleteSubject(
+    @Arg("subjectId") subjectId: string,
+    @Ctx() ctx: Context
+  ) {
     return ctx.prisma.subject.delete({
-      where: { id: params.subjectId },
+      where: { id: subjectId },
     });
   }
 }

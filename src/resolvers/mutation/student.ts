@@ -66,10 +66,13 @@ export class StudentMutation {
     });
   }
 
-  @Mutation(() => [Student])
-  async deleteStudent(@Ctx() ctx: Context, params: { studentId: string }) {
+  @Mutation(() => Student)
+  async deleteStudent(
+    @Arg("studentId") studentId: string,
+    @Ctx() ctx: Context
+  ) {
     return ctx.prisma.student.delete({
-      where: { id: params.studentId },
+      where: { id: studentId },
     });
   }
 }
